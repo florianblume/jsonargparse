@@ -105,7 +105,7 @@ class ActionsContainer(SignatureArguments, argparse._ActionsContainer):
                     container=super(),
                 )
         action = super().add_argument(*args, **kwargs)
-        if isinstance(action, ActionConfigFile) and getattr(self, '_print_config', None) is not None:
+        if isinstance(action, ActionConfigFile) and getattr(self, '_print_config', None) is None:
             self.add_argument(self._print_config, action=_ActionPrintConfig)  # type: ignore
         if is_meta_key(action.dest):
             raise ValueError(f'Argument with destination name "{action.dest}" not allowed.')
